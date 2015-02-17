@@ -3,8 +3,13 @@
     Created on : Feb 10, 2015, 8:07:27 PM
     Author     : Mike
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    Object obj = request.getAttribute("hotels");
+    if(obj == null){
+        response.sendRedirect("hdc");
+    }
+%>
 <%@page import="java.util.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -34,7 +39,7 @@
             </div>
             <div class="collapse	navbar-collapse pull-left" id="collapse-menu">
                 <ul class="nav	navbar-nav navbar-right">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="<%= response.encodeURL("home.jsp")%>">Home</a></li>
                     <!--<li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Links<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -59,7 +64,7 @@
                 
             </div>
             <div id="box2">
-                <form id="hotelForm" name="hotelForm" method="POST" action="${contextPath}/hdc">
+                <form id="hotelForm" name="hotelForm" method="POST" action="<%response.encodeURL("${contextPath}/hdc");%>">
                     <table>
                         <tr>    <td>ID:</td>    <td><input type="text" id="id" readonly name="id" value="${selectedHotel.hotelID}"/></td>     <td>Name:</td>      <td><input type="text" id="name" name="name" value="${selectedHotel.hotelName}"/></td>   <td><button type="button" id="clear" class="btn btn-default">Clear Table</button></td><td><button type="button" id="update" class="btn btn-primary">Update Changes</button></td></tr>
                         <tr>    <td>Street Address:</td>    <td><input type="text" id="street" name="street" value="${selectedHotel.streetAddress}"/></td>     <td>City:</td>      <td><input type="text" id="city" name="city" value="${selectedHotel.city}"/></td> <td><button type="button" id="create" class="btn btn-info">New Record</button></td><td><button type="button" id="delete" class="btn btn-danger">!!Delete Record!!</button></td>  </tr>
@@ -98,7 +103,7 @@
                     
                     $("#clear").click(function(){
                         $('#hotelForm').find("input, textarea").val("");
-                        
+                        $('.selected').removeClass('selected');
                     })
                     
                     $("#update").click(function(){

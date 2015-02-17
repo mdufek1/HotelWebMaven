@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
@@ -49,6 +50,7 @@ public class HotelDataController extends HttpServlet {
 //            final AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
             RequestDispatcher view
                     = request.getRequestDispatcher(RESULT_PAGE);
+            HttpSession session = request.getSession();
             WebApplicationContext ctx
                 = WebApplicationContextUtils
                 .getWebApplicationContext(this.getServletContext());
@@ -62,7 +64,7 @@ public class HotelDataController extends HttpServlet {
                 h = hs.getHotelByID(id);
                 System.out.println(h);
                 request.setAttribute("selectedHotel", h);
-
+                session.setAttribute("selectedHotel", h);
 //            Hotel h = new Hotel(id,(String)request.getParameter("name"),(String)request.getParameter("address"),(String)request.getParameter("city"),(String)request.getParameter("state"),(String)request.getParameter("zip"),(String)request.getParameter("note"));
             }
             else if(op != null && op.equals("update")){
@@ -70,6 +72,7 @@ public class HotelDataController extends HttpServlet {
                 h = new Hotel(id,(String)request.getParameter("name"),(String)request.getParameter("address"),(String)request.getParameter("city"),(String)request.getParameter("state"),(String)request.getParameter("zip"),(String)request.getParameter("note"));
                 try {
                     hs.updateHotel(h, "hotel_id", id+"");
+                    session.setAttribute("selectedHotel", h);
                 } catch (SQLException ex) {
                     Logger.getLogger(HotelDataController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -78,6 +81,7 @@ public class HotelDataController extends HttpServlet {
                 h = new Hotel(0,(String)request.getParameter("name"),(String)request.getParameter("address"),(String)request.getParameter("city"),(String)request.getParameter("state"),(String)request.getParameter("zip"),(String)request.getParameter("note"));
                 try{
                     hs.addHotel(h);
+                    session.setAttribute("selectedHotel", h);
                 } catch (SQLException ex) {
                     Logger.getLogger(HotelDataController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -86,9 +90,11 @@ public class HotelDataController extends HttpServlet {
                 id = Integer.parseInt(request.getParameter("id"));
                 try{
                     hs.removeHotel("hotel_id", id+"");
+                    session.setAttribute("selectedHotel", null);
                 } catch (SQLException ex) {
                     Logger.getLogger(HotelDataController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
             }
             List result = hs.getAllHotels();
             

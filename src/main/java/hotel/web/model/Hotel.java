@@ -9,7 +9,7 @@ package hotel.web.model;
  *
  * @author Mike
  */
-public class Hotel {
+public class Hotel implements java.io.Serializable{
     int hotelID;
     String hotelName;
     String streetAddress;
