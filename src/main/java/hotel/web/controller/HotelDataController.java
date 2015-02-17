@@ -28,7 +28,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  *
  * @author Mike
  */
-@WebServlet(name = "HotelDataController", urlPatterns = {"/hdc"})
+//@WebServlet(name = "HotelDataController", urlPatterns = {"/hdc"})
 public class HotelDataController extends HttpServlet {
 
     private static final String RESULT_PAGE = "index.jsp";
