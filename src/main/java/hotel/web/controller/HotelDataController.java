@@ -51,10 +51,10 @@ public class HotelDataController extends HttpServlet {
             RequestDispatcher view
                     = request.getRequestDispatcher(RESULT_PAGE);
             HttpSession session = request.getSession();
-            WebApplicationContext ctx
-                = WebApplicationContextUtils
-                .getWebApplicationContext(this.getServletContext());
-            HotelService hs = (HotelService) ctx.getBean("HotelService");
+//            WebApplicationContext ctx
+//                = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+//            HotelService hs = (HotelService) ctx.getBean("HotelService");
+            HotelService hs = (HotelService)getServletContext().getAttribute("hotelService");
             String op = request.getParameter("op");
             Hotel h = null;
             int id = 0;

@@ -18,6 +18,11 @@
         <servlet-name>HotelDataController</servlet-name>
         <url-pattern>/hdc</url-pattern>
     </servlet-mapping>
+    <listener>
+        <listener-class>
+            hotel.web.listener.HotelDatabaseContextListener
+        </listener-class>
+    </listener>
     <session-config>
         <session-timeout>
             30
