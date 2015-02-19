@@ -40,6 +40,7 @@
             <div class="collapse	navbar-collapse pull-left" id="collapse-menu">
                 <ul class="nav	navbar-nav navbar-right">
                     <li><a href="<%= response.encodeURL("home.jsp")%>">Home</a></li>
+                                        
                     <!--<li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Links<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -48,8 +49,9 @@
                             <li><a href="http://stackoverflow.com">Stack	Overflow</a></li>
                         </ul>-->
                 </ul>
-
+             
             </div>
+                    <p class="navbar-brand pull-right">${time}</p>
         </div>
     </nav>
 

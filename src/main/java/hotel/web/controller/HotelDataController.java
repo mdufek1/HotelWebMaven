@@ -102,6 +102,7 @@ public class HotelDataController extends HttpServlet {
             // are read/write. We can use attributes to store data for use on
             // another page.
             request.setAttribute("hotels", result);
+            
 
         // This object lets you forward both the request and response
             // objects to a destination page

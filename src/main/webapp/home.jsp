@@ -30,7 +30,9 @@
             <div class="collapse	navbar-collapse pull-left" id="collapse-menu">
                 <ul class="nav	navbar-nav navbar-right">
                     <li><a href="<%= response.encodeURL("hdc")%>">Manage Hotels</a></li>
+
                 </ul>
+                
 
             </div>
         </div>

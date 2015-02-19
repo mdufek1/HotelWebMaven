@@ -23,6 +23,11 @@
             hotel.web.listener.HotelDatabaseContextListener
         </listener-class>
     </listener>
+    <listener>
+        <listener-class>
+            hotel.web.listener.HotelSessionListener
+        </listener-class>
+    </listener>
     <session-config>
         <session-timeout>
             30
